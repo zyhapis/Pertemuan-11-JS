@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Javascript</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+
+<body class="bg-gray-100 p-5 flex flex-col items-center justify-center h-screen">
+    <h1 id="title" class="text-2xl font-semibold text-blue-700 mb-5">Event Saat Mouse Masuk</h1>
+    <div id="key_2" class="bg-blue-200 p-5">
+        <p id="key_2_text" class="text-lg font-semibold text-blue-700">Arahkan kursor ke sini!</p>
+    </div>
+
+    <!-- Event mouse -->
+    <button id="btn" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-5 hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300">
+        Tekan Tombol
+    </button>
+
+    <!-- Event keyboard -->
+    <button id="key" class="bg-red-500 text-white px-4 py-2 rounded-md mt-2 hover:bg-red-700 focus:outline-none focus:ring focus:border-red-300">
+        Tekan Keyboard
+    </button>
+
+    <!-- Event change -->
+    <select name="warna" id="warna" class="mt-4 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:border-blue-300">
+        <option value="yellow">Kuning</option>
+        <option value="green">Hijau</option>
+    </select>
+
+    <!-- Penjelasan Event -->
+    <div class="text-center mt-8">
+        <h2 class="text-lg font-semibold text-gray-700 mb-2">Penjelasan Event:</h2>
+        <ul class="text-sm text-gray-600">
+            <li>Mouse Masuk: Ketika kursor masuk ke area "key_2", latar belakangnya akan berubah menjadi biru dan pesan akan berubah menjadi "Mouse masuk!"</li>
+            <li>Mouse Keluar: Ketika kursor meninggalkan area "key_2", latar belakang akan kembali ke kondisi semula dan pesan akan kembali menjadi "Arahkan kursor ke sini!"</li>
+            <li>Klik Tombol: Ketika tombol "btn" ditekan, area "key_2" akan berubah menjadi biru dan pesan akan berubah menjadi "Tombol ditekan!"</li>
+            <li>Klik Keyboard: Ketika tombol "key" ditekan, area "key_2" akan berubah menjadi merah dan pesan akan berubah menjadi "Tombol ditekan!"</li>
+            <li>Ubah Pilihan: Ketika Anda memilih opsi dari elemen dropdown (select), latar belakang "key_2" akan berubah sesuai dengan pilihan yang Anda buat dan pesan akan menampilkan perubahan warna</li>
+            <li>Klik Kanan Dinonaktifkan: Ketika Anda mencoba mengklik kanan di area "key_2," peristiwa klik kanan akan dicegah dan pesan akan menampilkan "Klik kanan dinonaktifkan!"</li>
+            <li>Klik Ganda: Ketika Anda mengganda-klik tombol "key," latar belakang "key_2" akan berubah menjadi ungu dan pesan akan menampilkan "Klik ganda!"</li>
+            <li>Tahan Tombol Mouse: Ketika tombol "btn" dan "key" ditekan dan dipegang, area "key_2" akan berubah menjadi oranye dan pesan akan menampilkan "Tombol sedang ditekan!"</li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    // Event listener untuk mouse masuk
+    document.getElementById('btn').addEventListener("click", function() {
+        document.getElementById('key_2').style.backgroundColor = "blue";
+        document.getElementById('key_2_text').textContent = "Tombol ditekan!";
+    });
+
+    document.getElementById('btn').addEventListener("mouseout", function() {
+        document.getElementById('key_2').style.backgroundColor = "";
+        document.getElementById('key_2_text').textContent = "Arahkan kursor ke sini!";
+    });
+
+    document.getElementById('key_2').addEventListener("mouseenter", function() {
+        document.getElementById('key_2').style.backgroundColor = "blue";
+        document.getElementById('key_2_text').textContent = "Mouse masuk!";
+    });
+
+    document.getElementById('key_2').addEventListener("mouseleave", function() {
+        document.getElementById('key_2').style.backgroundColor = "";
+        document.getElementById('key_2_text').textContent = "Arahkan kursor ke sini!";
+    });
+
+    // Event listener untuk keyboard keypress
+    document.getElementById('key').addEventListener("click", function(event) {
+        document.getElementById('key_2').style.backgroundColor = "red";
+        document.getElementById('key_2_text').textContent = "Tombol ditekan!";
+    });
+
+    document.getElementById('key').addEventListener("mouseout", function() {
+        document.getElementById('key_2').style.backgroundColor = "";
+        document.getElementById('key_2_text').textContent = "Arahkan kursor ke sini!";
+    });
+
+    // Event listener untuk perubahan pada elemen dropdown (select)
+    document.getElementById('warna').addEventListener("change", function(event) {
+        document.getElementById('key_2').style.backgroundColor = event.target.value;
+        document.getElementById('key_2_text').textContent = "Warna diubah menjadi " + event.target.value;
+    });
+
+    // Event listener tambahan
+    document.getElementById('key_2').addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+        document.getElementById('key_2_text').textContent = "Klik kanan dinonaktifkan!";
+    });
+
+    document.getElementById('key').addEventListener("dblclick", function(event) {
+        document.getElementById('key_2').style.backgroundColor = "purple";
+        document.getElementById('key_2_text').textContent = "Klik ganda!";
+    });
+
+    document.getElementById('btn').addEventListener("mousedown", function() {
+        document.getElementById('key_2').style.backgroundColor = "orange";
+        document.getElementById('key_2_text').textContent = "Tombol sedang ditekan!";
+    });
+
+    document.getElementById('key').addEventListener("mousedown", function() {
+        document.getElementById('key_2').style.backgroundColor = "orange";
+        document.getElementById('key_2_text').textContent = "Tombol sedang ditekan!";
+    });
+
+    document.getElementById('btn').addEventListener("mouseup", function() {
+        document.getElementById('key_2_text').textContent = "Tombol ditekan!";
+    });
+
+    document.getElementById('key').addEventListener("mouseup", function() {
+        document.getElementById('key_2_text').textContent = "Tombol ditekan!";
+    });
+</script>
+
+</html>
